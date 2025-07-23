@@ -1,0 +1,31 @@
+{
+  "name": "sober-spokane-api",
+  "version": "1.0.0",
+  "description": "API to scrape and serve sobriety events for Sober Spokane",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "events",
+    "sobriety",
+    "spokane"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^5.6.0",
+    "mongoose": "^8.16.4",
+    "puppeteer": "^22.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

@@ -1,0 +1,17 @@
+# render.yaml - Render configuration for Sober Spokane API (free tier)
+# Docs: https://render.com/docs/yaml-spec
+
+services:
+  - type: web
+    name: sober-spokane-api
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: 'npm install'
+    startCommand: 'node api/index.js'
+    envVars:
+      - key: MONGODB_URI
+        sync: false  # Set this in the Render dashboard for security
+    autoDeploy: true
+    healthCheckPath: /health
+    # Exposes port 3000 by default (from index.js) 
