@@ -8,7 +8,6 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
 const cors = require('cors');
-app.use(cors());
 
 // Only load dotenv in development (not needed on Render)
 if (process.env.NODE_ENV !== 'production') {
@@ -16,6 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 
 // --- Render Deployment: Environment Variable Checks ---
