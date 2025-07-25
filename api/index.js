@@ -16,6 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const app = express();
 app.use(cors());
+app.use(express.json()); // Add this after app.use(cors()) to parse JSON bodies
 const PORT = process.env.PORT || 3000;
 
 // --- Render Deployment: Environment Variable Checks ---
@@ -57,6 +58,22 @@ app.get('/events', async (req, res) => {
   } catch (err) {
     console.error('Error fetching events:', err);
     res.status(500).json({ error: 'Failed to fetch events' });
+  }
+});
+
+// POST /events endpoint: add a new event
+app.post('/events', async (req, res) => {
+  const { title, date, location, description } = req.body;
+  if (!title || !date || !location) {
+    return res.status(400).json({ error: 'title, date, and location are required.' });
+  }
+  try {
+    const newEvent = new Event({ title, date, location, description });
+    await newEvent.save();
+    res.status(201).json(newEvent);
+  } catch (err) {
+    console.error('Error creating event:', err);
+    res.status(500).json({ error: 'Failed to create event' });
   }
 });
 
